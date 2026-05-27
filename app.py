@@ -1412,13 +1412,14 @@ else:
         
     with st.expander("2. LA GERARCHIA DEI CONTRATTI: Le Regole di Ereditarietà (Esempio di Default e Override)", expanded=False):
         st.markdown("""
-        Per evitare di dover inserire migliaia di righe per ogni singolo cliente e referenza, l'applicazione utilizza un algoritmo di scansione a cascata che cerca l'accordo commerciale seguendo 4 livelli logici.
+        Per evitare di dover inserire migliaia di righe per ogni singolo cliente e referenza, l'applicazione utilizza un algoritmo di scansione a cascata che cerca l'accordo commerciale seguendo 5 livelli logici.
         
-        #### I 4 Livelli:
-        1. **GRUPPO MACRO** (es. *COOP ITALIA*) ➔ Regole generali valide per tutte le insegne e tutti i prodotti.
-        2. **SOTTOGRUPPO** (es. *ALLEANZA 3.0*) ➔ Condizioni specifiche che sovrascrivono la Centrale.
-        3. **CATEGORIA** (es. *EXTRAVERGINE*) ➔ Sconti validi solo per quel tipo di olio.
-        4. **REFERENZA (EAN)** (es. *Filippo Berio 100% ITA 0,75*) ➔ Il livello di massima precisione.
+        #### I 5 Livelli:
+        1. **GRUPPO MACRO** (es. *COOP ITALIA*) ➔ Regole generali valide per tutto il gruppo e tutti i prodotti.
+        2. **SOTTOGRUPPO** (es. *COOP ITALIA SOTTOGRUPPO*) ➔ Condizioni specifiche per un raggruppamento intermedio.
+        3. **ASSOCIATO / INSEGNA** (es. *ALLEANZA 3.0*) ➔ Condizioni locali che sovrascrivono i livelli superiori.
+        4. **CATEGORIA** (es. *EXTRAVERGINE*) ➔ Sconti validi solo per quel tipo di olio all'interno del cliente.
+        5. **REFERENZA (EAN)** (es. *Filippo Berio 100% ITA 0,75*) ➔ Il livello di massima precisione.
         
         #### Come gestire i campi in Tabella (Casi Reali):
         
