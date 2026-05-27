@@ -311,7 +311,7 @@ menu = st.sidebar.radio("SELEZIONA SCHEDA", ["Simulatore Offerte", "Dati Anagraf
 # SCHEDA 1: SIMULATORE
 # ==========================================
 if menu == "Simulatore Offerte":
-    st.title("Bunker Commerciale Salov - Simulatore")
+    st.title("Commerciale Salov - Simulatore")
     conn = sqlite3.connect(DB_FILE)
     
     st.sidebar.header("Parametri Negoziazione")
