@@ -1412,7 +1412,7 @@ else:
         1. Seleziona la modalità **A**.
         2. Inserisci nel campo il prezzo richiesto dal cliente.
         3. Il motore calcola istantaneamente al millesimo lo **Sconto Promozionale Z (%)** necessario per arrivare a quel prezzo che non è modificabile e automaticamente aggiunto alla proposta commerciale
-        4. L'univa leva promozionale attiva è lo sconto unitario in fattura, alla modifica di questo, lo sconto promozinale varia di conseguenza
+        4. L'unica leva promozionale attiva è lo sconto unitario in fattura, alla modifica di questo, lo sconto promozinale varia di conseguenza
         5. Se il target inserito fa scendere la marginalità sotto la soglia di sicurezza, il sistema calcolerà comunque lo sconto ma ti avviserà del blocco.
         
         ####  Modalità B: Tentativi Spot Manuali (Uso Libero)
