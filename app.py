@@ -271,6 +271,11 @@ def seed_baseline_data(conn):
         ('ESSELUNGA GRUPPO', 'ESSELUNGA SOTTOGRUPPO', 'ESSELUNGA', 'REFERENZA', '8002210111110', 38.00, None, None, None, None, None, None, 11.0, 0.0, None, None, None, None, None, None, None),
         ('ESSELUNGA GRUPPO', 'ESSELUNGA SOTTOGRUPPO', 'ESSELUNGA', 'REFERENZA', '8002210001305', 24.00, None, None, None, None, None, None, 13.0, 0.0, None, None, None, None, None, None, None),
 
+        ('CONAD', '', '', 'GRUPPO', '', None, 17.0, 18.0, None, None, None, None, None, None, 1.5, 1.0, 9.0, 11.0, None, None, None),
+        ('CONAD', 'CONAD SOTTOGRUPPO', 'CONAD ADRIATICO', 'REFERENZA', '8002210131620', 50.00, None, None, None, None, None, None, 12.0, 9.0, None, None, None, None, None, None, None),
+        ('CONAD', 'CONAD SOTTOGRUPPO', 'CONAD ADRIATICO', 'REFERENZA', '8002210111110', 44.00, None, None, None, None, None, None, 11.0, 4.0, None, None, None, None, None, None, None),
+        ('CONAD', 'CONAD SOTTOGRUPPO', 'CONAD ADRIATICO', 'REFERENZA', '8002210001305', 30.00, None, None, None, None, None, None, 10.0, 4.0, None, None, None, None, None, None, None),
+
         ('SELEX GRUPPO', '', '', 'GRUPPO', '', None, 17.0, 18.0, None, None, None, None, None, None, 1.5, 1.0, 9.0, 11.0, None, None, None),
         ('SELEX GRUPPO', 'SELEX SOTTOGRUPPO', 'SELEX ', 'REFERENZA', '8002210131620', 50.00, None, None, None, None, None, None, 12.0, 9.0, None, None, None, None, None, None, None),
         ('SELEX GRUPPO', 'SELEX SOTTOGRUPPO', 'SELEX ', 'REFERENZA', '8002210111110', 44.00, None, None, None, None, None, None, 11.0, 4.0, None, None, None, None, None, None, None),
