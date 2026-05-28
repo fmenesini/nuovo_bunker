@@ -1125,7 +1125,7 @@ elif menu == "Report Sintetico":
     contenitore_bench = st.container(border=True)
     with contenitore_bench:
         st.subheader("🔍 Benchmark Comparativo di Canale (Livello Sottogruppo)")
-        st.markdown("Analisi strutturale delle asimmetrie commerciali. Gli sconti sono collassati per destinazione logica.")
+        st.markdown("Analisi strutturale delle asimmetrie commerciali. Gli sconti sono collassati per destinazione logica. In fase di test mettere Sagra Ex.v. CLassico lt1")
         
         col_f1, col_f2 = st.columns(2)
         with col_f1:
