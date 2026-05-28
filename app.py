@@ -362,7 +362,7 @@ if menu == "Simulatore Offerte":
         st.markdown("### Scegli Metodologia di Negoziazione")
         metodo_lavoro = st.radio(
             "Seleziona l'approccio negoziale:",
-            ["A. Partenza da Prezzo Target (Calcolo automatico Sconto Promo Z)", "B. Tentativi Spot Manuali (Immissione Sconto Z libera)"],
+            ["A. Partenza da Prezzo Target (Calcolo automatico Sconto Promo)", "B. Tentativi Spot Manuali (Immissione Sconto Promo libera)"],
             horizontal=True
         )
 
