@@ -1050,12 +1050,21 @@ elif menu == "Back-Office (Contratti)":
             LEFT JOIN anagrafica_master a ON g.ean = a.ean
         """, conn)
         
+        # AGGIUNTA: Formattazione in Euro della colonna min_net_net_g
         edited_guardrail = st.data_editor(
             df_guardrail, 
             num_rows="dynamic", 
             use_container_width=True,
             hide_index=True,
             disabled=["descrizione_commerciale"],
+            column_config={
+                "min_net_net_g": st.column_config.NumberColumn(
+                    "Min Net Net (€)",
+                    help="Soglia minima di margine in Euro",
+                    format="€ %.2f",
+                    step=0.01,
+                )
+            },
             key="guardrail_editor"
         )
         
@@ -1072,6 +1081,66 @@ elif menu == "Back-Office (Contratti)":
                 st.rerun()
             except Exception as e:
                 st.error(f"ROSSO (BLOCCATO) - Errore salvataggio guardrail: {e}")
+
+        st.markdown("---")
+        
+        # AGGIUNTA: Sezione Export/Import per i Guardrail
+        col_g1, col_g2 = st.columns(2)
+        
+        with col_g1:
+            st.subheader("Esportazione Guardrail")
+            st.markdown("Scarica i limiti minimi attuali per lavorarli in Excel.")
+            
+            buffer_guardrail = io.BytesIO()
+            with pd.ExcelWriter(buffer_guardrail, engine='openpyxl') as writer:
+                df_guardrail.to_excel(writer, index=False, sheet_name="Guardrail_NetNet")
+                
+            st.download_button(
+                label="Scarica Guardrail (Excel)",
+                data=buffer_guardrail.getvalue(),
+                file_name=f"Guardrail_Minimi_{datetime.now().strftime('%Y%m%d_%H%M')}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
+        with col_g2:
+            st.subheader("Importazione Massiva Guardrail")
+            st.markdown("Carica un file Excel contenente le colonne **ean** e **min_net_net_g**.")
+            uploaded_guardrail = st.file_uploader("Trascina il file Excel Guardrail (.xlsx)", type=["xlsx"], key="up_guardrail")
+            
+            if uploaded_guardrail is not None:
+                if st.button("Conferma Scrittura Guardrail"):
+                    try:
+                        df_g_import = pd.read_excel(uploaded_guardrail)
+                        # Normalizzazione nomi colonne
+                        df_g_import.columns = [str(c).lower().strip() for c in df_g_import.columns]
+                        
+                        if "ean" not in df_g_import.columns or "min_net_net_g" not in df_g_import.columns:
+                            st.error("ROSSO (BLOCCATO) - Il file Excel deve contenere obbligatoriamente le colonne 'ean' e 'min_net_net_g'.")
+                        else:
+                            cursor = conn.cursor()
+                            righe_inserite = 0
+                            
+                            with conn:
+                                for idx, row in df_g_import.iterrows():
+                                    ean_val = str(row.get("ean", "")).split('.')[0].zfill(13)
+                                    if not ean_val or ean_val == "0000000000000" or ean_val == "nan":
+                                        continue
+                                        
+                                    min_g = row.get("min_net_net_g", 0.0)
+                                    try:
+                                        min_g = float(str(min_g).replace(',', '.'))
+                                    except:
+                                        min_g = 0.0
+                                        
+                                    cursor.execute("""
+                                    INSERT OR REPLACE INTO guardrail_aziendali (ean, min_net_net_g) VALUES (?, ?)
+                                    """, (ean_val, min_g))
+                                    righe_inserite += 1
+                                    
+                            st.success(f"VERDE (APPROVATO) - Aggiornati {righe_inserite} limiti minimi di margine.")
+                            st.rerun()
+                    except Exception as e:
+                        st.error(f"ROSSO (BLOCCATO) - Errore durante l'importazione: {e}")
 
     st.markdown("---")
     st.markdown("<h3 style='color: #D32F2F;'>Sezione Pericolo (Danger Zone)</h3>", unsafe_allow_html=True)
