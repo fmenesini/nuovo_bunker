@@ -509,7 +509,7 @@ if menu == "Simulatore Offerte":
                 if result.guardrail_ok:
                     st.success(f"VERDE (APPROVATO) - Margine sicuro. Delta: +{result.delta_vs_min:.2f} Euro")
                 else:
-                    st.error(f"ROSSO (BLOCCATO) - Sotto soglia di {abs(result.delta_vs_min):.2f} Euro")
+                    st.error(f"ROSSO (BLOCCATO) - Sotto soglia di {abs(result.delta_vs_min):.2f} Euro" SI PERDE SOLDI!!!)
         
         with col_c2:
             with st.expander("Finestra Temporale Promo", expanded=True):
